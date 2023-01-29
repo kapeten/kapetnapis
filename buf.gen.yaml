@@ -1,0 +1,41 @@
+version: v1
+plugins:
+
+# Go
+- plugin: buf.build/protocolbuffers/go:v1.28.1
+  out: gen/proto/go
+- plugin: buf.build/grpc/go:v1.2.0
+  out: gen/proto/go
+- plugin: grpc-gateway
+  out: gen/proto/go
+  opt:
+  - generate_unbound_methods=true
+  - grpc_api_configuration=grpc_gateway.yaml
+- plugin: openapiv2
+  out: gen/openapi
+  opt:
+  - output_format=yaml
+  - generate_unbound_methods=true
+  - openapi_configuration=swagger.yaml
+
+# Kotlin
+- plugin: buf.build/protocolbuffers/kotlin:v21.12
+  out: gen/proto/kt
+- plugin: buf.build/grpc/kotlin:v1.3.0
+  out: gen/proto/kt
+
+# Python
+- plugin: buf.build/protocolbuffers/python:v21.12
+  out: gen/proto/py
+- plugin: buf.build/grpc/python:v1.51.1
+  out: gen/proto/py
+
+# Ruby
+- plugin: buf.build/protocolbuffers/ruby:v21.12
+  out: gen/proto/rb
+- plugin: buf.build/grpc/ruby:v1.51.1
+  out: gen/proto/rb
+
+# Rust
+- plugin: buf.build/community/neoeinstein-prost
+  out: gen/proto/rs

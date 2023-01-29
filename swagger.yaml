@@ -1,0 +1,25 @@
+openapiOptions:
+  file:
+  - file: "kapetn/service/metadata/v1/metadata.proto"
+    option:
+      info:
+        title: "Metadata"
+        version: "1.0"
+        contact:
+          name: "Support"
+          email: "support@kapetn.dev"
+          url: "https://kapetn.dev"
+        license:
+          name: "Apache-2.0"
+          url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+      schemes:
+      - HTTP
+      - HTTPS
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  method:
+  - method: kapetn.service.metadata.v1.MetadataService.GetMetadata
+    option:
+      operation_id: "get_metadata"

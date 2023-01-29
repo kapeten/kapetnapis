@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package kapetn.service.metadata.v1;
+
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/kapeten/kapetnapis/kapetn/service/metadata/v1;metadata";
+option java_multiple_files = true;
+option java_package = "dev.kapetn.service.metadata.v1";
+
+// Service for retreiving the metadata bound to a resource.
+service MetadataService {
+  // Get the metadata bound to a resource.
+  rpc GetMetadata(GetMetadataRequest) returns (GetMetadataResponse);
+}
+
+message GetMetadataRequest {
+  // All metadata requests must specify an identifier. This uniquely identifies
+  // a resource with associated metadata.
+  string identifier = 1;
+
+  // Metadata requests may optionally include a namespace. This enables re-use
+  // of identifiers as long as they are within different namespaces. If no
+  // namespace is given, it assumes the value of "default".
+  string namespace = 2;
+}
+
+message GetMetadataResponse {
+  // The returned metadata as a dictionary of key value pairs.
+  google.protobuf.Struct metadata = 1;
+}
